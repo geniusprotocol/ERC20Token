@@ -3,6 +3,7 @@ pragma solidity ^0.4.11;
 /**
  * Math operations with safety checks
  */
+
 library SafeMath {
   function mul(uint a, uint b) internal returns (uint) {
     uint c = a * b;
@@ -93,12 +94,21 @@ contract BasicToken is ERC20Basic {
      _;
   }
 
+  modifier validDestination( address to ) {
+        require(to != address(0x0));
+        require(to != address(this) );
+        _;
+    }
+
   /**
   * @dev transfer token for a specified address
   * @param _to The address to transfer to.
   * @param _value The amount to be transferred.
   */
-  function transfer(address _to, uint _value) onlyPayloadSize(2 * 32) {
+  function transfer(address _to, uint _value) onlyPayloadSize(2 * 32)
+      validDestination(_to)
+      returns (bool)
+      {
     balances[msg.sender] = balances[msg.sender].sub(_value);
     balances[_to] = balances[_to].add(_value);
     Transfer(msg.sender, _to, _value);
@@ -133,7 +143,10 @@ contract StandardToken is BasicToken, ERC20 {
    * @param _to address The address which you want to transfer to
    * @param _value uint the amout of tokens to be transfered
    */
-  function transferFrom(address _from, address _to, uint _value) onlyPayloadSize(3 * 32) {
+  function transferFrom(address _from, address _to, uint _value) onlyPayloadSize(3 * 32)
+      validDestination(_to)
+      returns (bool)
+      {
     var _allowance = allowed[_from][msg.sender];
 
     // Check is not needed because sub(_allowance, _value) will already throw if this condition is not met
