@@ -26,7 +26,6 @@ contract BasicToken is ERC20Basic {
   */
   function transfer(address _to, uint _value) onlyPayloadSize(2 * 32) {
     require(_to != address(0)); //----added this
-    require(_value <= balances[msg.sender]); //------added this
     balances[msg.sender] = balances[msg.sender].sub(_value);
     balances[_to] = balances[_to].add(_value);
     Transfer(msg.sender, _to, _value);
