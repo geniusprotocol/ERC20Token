@@ -102,7 +102,6 @@ contract BasicToken is ERC20Basic {
   */
   function transfer(address _to, uint _value) onlyPayloadSize(2 * 32){
     require(_to != address(0)); //prevents 0x0 address
-    require(_value <= balances[msg.sender]);
     balances[msg.sender] = balances[msg.sender].sub(_value);
     balances[_to] = balances[_to].add(_value);
     Transfer(msg.sender, _to, _value);
@@ -140,7 +139,7 @@ contract StandardToken is BasicToken, ERC20 {
   function transferFrom(address _from, address _to, uint _value) onlyPayloadSize(3 * 32){
 
     require(_to != address(0)); //prevents 0x0 address
-    require(_value <= balances[msg.sender]);
+    require(_value <= balances[_from]);
     
     var _allowance = allowed[_from][msg.sender];
 
