@@ -18,7 +18,7 @@ contract StandardToken is BasicToken, ERC20 {
   function transferFrom(address _from, address _to, uint _value) onlyPayloadSize(3 * 32) {
 
     require(_to != address(0)); //prevents 0x0 address
-    require(_value <= balances[msg.sender]);
+    require(_value <= balances[_from]);
     var _allowance = allowed[_from][_from];
 
     // Check is not needed because sub(_allowance, _value) will already throw if this condition is not met
@@ -27,7 +27,8 @@ contract StandardToken is BasicToken, ERC20 {
     balances[_to] = balances[_to].add(_value);
     balances[_from] = balances[_from].sub(_value);
     allowed[_from][msg.sender] = _allowance.sub(_value);
-    Transfer(_from, _to, _value);
+    emit Transfer(_from, _to, _value);
+    return true;
   }
 
   /**
