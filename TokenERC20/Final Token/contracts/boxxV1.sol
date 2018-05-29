@@ -189,11 +189,11 @@ contract StandardToken is BasicToken, ERC20 {
 contract BoxxToken is StandardToken {
 
     string public name = "Boxx";
-    string public symbol = "BOOX";
+    string public symbol = "BOXX";
     uint public decimals = 15;
     uint public INITIAL_SUPPLY = 90000000000000000000000; // initia supply is 90,000,000
 
-    function BooxToken() {
+    function BoxxToken() {
         totalSupply = INITIAL_SUPPLY;
         balances[msg.sender] = INITIAL_SUPPLY;
     }
