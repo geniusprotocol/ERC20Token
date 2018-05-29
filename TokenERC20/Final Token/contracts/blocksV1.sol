@@ -186,14 +186,14 @@ contract StandardToken is BasicToken, ERC20 {
  *
  * @dev Implemantation of the blocks token.
  */
-contract BlocksToken is StandardToken {
+contract BoxxToken is StandardToken {
 
-    string public name = "Blocks";
-    string public symbol = "BLOX";
+    string public name = "Boxx";
+    string public symbol = "BOOX";
     uint public decimals = 15;
-    uint public INITIAL_SUPPLY = 100000000000000000000000; // initia supply is 100,000,000
+    uint public INITIAL_SUPPLY = 90000000000000000000000; // initia supply is 90,000,000
 
-    function BlocksToken() {
+    function BooxToken() {
         totalSupply = INITIAL_SUPPLY;
         balances[msg.sender] = INITIAL_SUPPLY;
     }
