@@ -182,9 +182,9 @@ contract StandardToken is BasicToken, ERC20 {
 }
 
 /**
- * @title Blocks ERC20 token
+ * @title Boxx ERC20 token
  *
- * @dev Implemantation of the blocks token.
+ * @dev Implemantation of the boxx token.
  */
 contract BoxxToken is StandardToken {
 
