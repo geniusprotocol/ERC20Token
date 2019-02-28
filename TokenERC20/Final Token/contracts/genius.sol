@@ -121,7 +121,7 @@ contract BasicToken is ERC20Basic {
 /**
  * @title Standard ERC20 token
  *
- * @dev Implemantation of the basic standart token.
+ * @dev Implementation of the basic standard token.
  * @dev https://github.com/ethereum/EIPs/issues/20
  * @dev Based on code by FirstBlood: https://github.com/Firstbloodio/token/blob/master/smart_contract/FirstBloodToken.sol
  */
@@ -134,7 +134,7 @@ contract StandardToken is BasicToken, ERC20 {
    * @dev Transfer tokens from one address to another
    * @param _from address The address which you want to send tokens from
    * @param _to address The address which you want to transfer to
-   * @param _value uint the amout of tokens to be transfered
+   * @param _value uint the amount of tokens to be transferred
    */
   function transferFrom(address _from, address _to, uint _value) onlyPayloadSize(3 * 32){
 
@@ -153,7 +153,7 @@ contract StandardToken is BasicToken, ERC20 {
   }
 
   /**
-   * @dev Aprove the passed address to spend the specified amount of tokens on beahlf of msg.sender.
+   * @dev Approve the passed address to spend the specified amount of tokens on beahlf of msg.sender.
    * @param _spender The address which will spend the funds.
    * @param _value The amount of tokens to be spent.
    */
@@ -173,7 +173,7 @@ contract StandardToken is BasicToken, ERC20 {
    * @dev Function to check the amount of tokens than an owner allowed to a spender.
    * @param _owner address The address which owns the funds.
    * @param _spender address The address which will spend the funds.
-   * @return A uint specifing the amount of tokens still avaible for the spender.
+   * @return A uint specifying the amount of tokens still available for the spender.
    */
   function allowance(address _owner, address _spender) constant returns (uint remaining) {
     return allowed[_owner][_spender];
@@ -182,18 +182,18 @@ contract StandardToken is BasicToken, ERC20 {
 }
 
 /**
- * @title Boxx ERC20 token
+ * @title Genius ERC20 token
  *
- * @dev Implemantation of the boxx token.
+ * @dev Implementation of the Genius token.
  */
-contract BoxxToken is StandardToken {
+contract Genius is StandardToken {
 
-    string public name = "Boxx";
-    string public symbol = "BOXX";
+    string public name = "Genius";
+    string public symbol = "XGR";
     uint public decimals = 15;
-    uint public INITIAL_SUPPLY = 90000000000000000000000; // initia supply is 90,000,000
+    uint public INITIAL_SUPPLY = 400000000000000000000000; // initial supply is 400,000,000
 
-    function BoxxToken() {
+    function Genius() {
         totalSupply = INITIAL_SUPPLY;
         balances[msg.sender] = INITIAL_SUPPLY;
     }
